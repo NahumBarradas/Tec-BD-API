@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     class persona extends Model {
         
         static associate(model) {
-            
+
         }
     }
     persona.init({

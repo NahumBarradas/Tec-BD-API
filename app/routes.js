@@ -14,4 +14,6 @@ router.get('/', (req, res) => {
 router.post('/api/login', AuthController.signIn);
 router.post('/api/registro', AuthController.signUp);
 
+router.post('/api/perfil', AuthController.perfil);
+
 module.exports = router;

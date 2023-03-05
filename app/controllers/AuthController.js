@@ -27,9 +27,9 @@ module.exports = {
                 }else{
                     res.status(401).json({msg: 'Contraseña incorrecta'});
                 }
-                perfil = persona.findOne({ where: { id: usuario.persona_id }});
+                let perfil = persona.findOne({ where: { id: usuario.persona_id }});
                 res.json({
-                    perfil: perfil,
+                    usuario: perfil.nombre,
                     token: token
                 })
             }
@@ -68,6 +68,21 @@ module.exports = {
             });
         }).catch(err => {
             res.status(500).json(err)
+        })
+    },
+    //Despliegue de perfil
+    perfil(req, res, next) {
+
+        let {persona_id} = req.body;
+
+        persona.findByPk(persona_id).then(persona => {
+            if(!persona){
+                res.status(404).json({ msg: 'No such person'});
+            }else{
+                res.json({
+                    persona: persona
+                })
+            }
         })
     }
 }
