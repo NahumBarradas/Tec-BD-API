@@ -93,11 +93,10 @@ module.exports = {
                     status: 1,
                 })
             })
-//Cierra creación de ususario
-
+//Cierra creación de usuario
             res.json({
                 persona: persona,
-                token: token
+                token: token,
             });
         }).catch(err => {
             res.status(500).json(err)
