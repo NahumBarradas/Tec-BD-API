@@ -27,10 +27,15 @@ module.exports = {
                 }else{
                     res.status(401).json({msg: 'Contraseña incorrecta'});
                 }
-                let perfil = persona.findOne({ where: { id: usuario.persona_id }});
-                res.json({
-                    usuario: perfil.nombre,
-                    token: token
+                persona.findByPk(usuario.persona_id).then(persona => {
+                    if(!persona){
+                        res.status(404).json({msg: 'El usuario no existe'});
+                    }else{
+                        res.json({
+                        usuario: persona,
+                        token: token
+                        });
+                    }
                 })
             }
         }).catch(err => {
