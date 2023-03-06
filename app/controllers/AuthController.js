@@ -66,6 +66,34 @@ module.exports = {
             let token =jwt.sign({ persona: persona}, authconfig.secret, { 
                 expiresIn: authconfig.expires
             });
+//Crear usuario
+            usuario.count({
+                col: 'username',
+            }).then(function (count) {
+                function llenarConCeros(num, totalLength) {
+                    return String(num).padStart(totalLength, '0');
+                }
+                var now = new Date();
+                var fecha_control = (now.getFullYear() + "7O").slice(2);
+                function randomStr(len, arr) {
+                    var ans = '';
+                    for (var i = len; i > 0; i--) {
+                        ans +=
+                        arr[Math.floor(Math.random() * arr.length)];
+                    }
+                    return ans;
+                } 
+                const folio_control = llenarConCeros(count, 5);
+                n_control = fecha_control + folio_control;
+                usuario.create({
+                    username: n_control,
+                    password: randomStr(20, '123456789ABCDEFGHI'),
+                    persona_id: persona.id,
+                    rol: 2,
+                    status: 1,
+                })
+            })
+//Cierra creación de ususario
 
             res.json({
                 persona: persona,
