@@ -9,25 +9,25 @@ module.exports = {
     //Inicio de sesión de alumno
     signIn(req, res) {
 
-        let {username, password} = req.body;
+        let {control, password} = req.body;
 
-        usuario.findOne({
+        alumno.findOne({
             where: {
-                username: username
+                control: control
             }
-        }).then(usuario => {
+        }).then(alumno => {
             
-            if(!usuario){
-                res.status(404).json({msg: 'El usuario no existe'});
+            if(!alumno){
+                res.status(404).json({msg: 'El alumno no existe'});
             }else{
-                if(/*bcrypt.compareSync(password, usuario.password)*/req.body.password == usuario.password){
-                    token = jwt.sign({ usuario: usuario }, authconfig.secret, {
+                if(/*bcrypt.compareSync(password, usuario.password)*/req.body.alupas == alumno.alupas){
+                    token = jwt.sign({ alumno: alumno }, authconfig.secret, {
                         expiresIn: authconfig.expires
                     });
                 }else{
                     res.status(401).json({msg: 'Contraseña incorrecta'});
                 }
-                persona.findByPk(usuario.persona_id).then(persona => {
+                persona.findByPk(alumno.persona_id).then(persona => {
                     if(!persona){
                         res.status(404).json({msg: 'El usuario no existe'});
                     }else{
@@ -67,8 +67,8 @@ module.exports = {
                 expiresIn: authconfig.expires
             });
 //Crear usuario
-            usuario.count({
-                col: 'username',
+            alumno.count({
+                col: 'control',
             }).then(function (count) {
                 function llenarConCeros(num, totalLength) {
                     return String(num).padStart(totalLength, '0');
@@ -85,12 +85,10 @@ module.exports = {
                 } 
                 const folio_control = llenarConCeros(count, 5);
                 n_control = fecha_control + folio_control;
-                usuario.create({
-                    username: n_control,
-                    password: randomStr(20, '123456789ABCDEFGHI'),
+                alumno.create({
+                    control: n_control,
+                    alupas: randomStr(10, '123456789ABCDEFGHI'),
                     persona_id: persona.id,
-                    rol: 2,
-                    status: 1,
                 })
             })
 //Cierra creación de usuario
