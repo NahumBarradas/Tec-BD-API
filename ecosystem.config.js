@@ -8,7 +8,7 @@ module.exports = {
     },],
     deploy: {
         "production": {
-            "user": "ubuntu",
+            "user": "nahum",
             "host": "192.168.10.80",
             "ref": "origin/master",
             "repo": "https://github.com/NahumBarradas/Tec-BD-API.git",
