@@ -33,7 +33,8 @@ module.exports = {
                     }else{
                         res.json({
                         usuario: persona,
-                        token: token
+                        token: token,
+                        msg: "Inicio de sesión correcto"
                         });
                     }
                 })
