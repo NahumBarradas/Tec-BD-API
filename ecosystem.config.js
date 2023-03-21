@@ -15,7 +15,7 @@ module.exports = {
             "path": "/home/server/deploy",
             "pre-setup": "pwd",
             "pre-deploy-local": "echo 'This is a local executed command'",
-            "post-deploy": "cp../.env ./ && npm install && pm2 startOrRestart ecosystem.config.js --env production"
+            "post-deploy": "cp ../.env ./ && npm install && pm2 startOrRestart ecosystem.config.js --env production"
         },
     },
 };
