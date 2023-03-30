@@ -68,7 +68,7 @@ module.exports = {
                 expiresIn: authconfig.expires
             });
 //Crear usuario
-            alumno.count({
+            /*alumno.count({
                 col: 'control',
             }).then(function (count) {
                 function llenarConCeros(num, totalLength) {
@@ -91,7 +91,7 @@ module.exports = {
                     alupas: randomStr(10, '123456789ABCDEFGHI'),
                     persona_id: persona.id,
                 })
-            })
+            })*/
 //Cierra creación de usuario
             res.json({
                 persona: persona,
