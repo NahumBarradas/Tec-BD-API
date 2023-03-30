@@ -64,9 +64,9 @@ module.exports = {
             requiere_actualizar_contacto_personal: req.body.requiere_actualizar_contacto_personal,
             rh_actualizacion: req.body.rh_actualizacion,
         }).then(persona => {
-            /*let token =jwt.sign({ persona: persona}, authconfig.secret, { 
+            let token = jwt.sign({ persona: persona }, authconfig.secret, { 
                 expiresIn: authconfig.expires
-            });*/
+            });
 //Crear usuario
             alumno.count({
                 col: 'control',
@@ -90,13 +90,15 @@ module.exports = {
                     control: n_control,
                     alupas: randomStr(10, '123456789ABCDEFGHI'),
                     persona_id: persona.id,
+                }).then(alumno => {
+                    res.json({
+                        persona: persona,
+                        token: token,
+                        alumno: alumno,
+                    });
                 })
             })
 //Cierra creación de usuario
-            res.json({
-                persona: persona,
-                //token: token,
-            });
         }).catch(err => {
             res.status(500).json(err)
         })
