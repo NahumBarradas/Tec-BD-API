@@ -64,11 +64,11 @@ module.exports = {
             requiere_actualizar_contacto_personal: req.body.requiere_actualizar_contacto_personal,
             rh_actualizacion: req.body.rh_actualizacion,
         }).then(persona => {
-            let token =jwt.sign({ persona: persona}, authconfig.secret, { 
+            /*let token =jwt.sign({ persona: persona}, authconfig.secret, { 
                 expiresIn: authconfig.expires
-            });
+            });*/
 //Crear usuario
-            /*alumno.count({
+            alumno.count({
                 col: 'control',
             }).then(function (count) {
                 function llenarConCeros(num, totalLength) {
@@ -91,11 +91,11 @@ module.exports = {
                     alupas: randomStr(10, '123456789ABCDEFGHI'),
                     persona_id: persona.id,
                 })
-            })*/
+            })
 //Cierra creación de usuario
             res.json({
                 persona: persona,
-                token: token,
+                //token: token,
             });
         }).catch(err => {
             res.status(500).json(err)
