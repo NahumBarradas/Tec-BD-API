@@ -6,7 +6,7 @@ const AuthController = require('./controllers/AuthController');
 
 //Home
 router.get('/', (req, res) => {
-    res.send('Hello, world!');
+    res.send('Hello, world! modified');
 });
 
 //Dos rutas: login y registro
